@@ -6,6 +6,17 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBarScript healthBar;
+
+    void start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
+
     private void Awake() {
 
         if(instance == null) {
@@ -21,7 +32,13 @@ public class Player : MonoBehaviour {
     public static Gun CurrentGun;
     public static GameObject CurrentGunGO;
 
+
     private void Update() {
+        //This input is here to make sure the health works
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(20);
+        }
 
         if(CurrentGun != null) {
 
@@ -46,5 +63,19 @@ public class Player : MonoBehaviour {
         }
 
     }
+
+
+
+   void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
+    }
+
+
+
+
+
 
 }
