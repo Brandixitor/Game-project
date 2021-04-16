@@ -6,6 +6,8 @@ public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
 
+    public transform playerBody;
+
     private void Start() 
     {
 
@@ -15,6 +17,9 @@ public class MouseLook : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        playerBody.rotate(Vector3.up * mouseX);
     }
 
 }
+// To be continued
