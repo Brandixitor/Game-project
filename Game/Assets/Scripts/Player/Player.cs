@@ -32,10 +32,15 @@ public class Player : MonoBehaviour {
     //Health functions
     void Start()
     {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
 
-        if(CurrentGun == null) {
+        if(healthBar != null) {
+
+            currentHealth = maxHealth;
+            healthBar.SetMaxHealth(maxHealth);
+
+        }
+
+        if(CurrentGun == null && Ammo != null) {
 
             Ammo.gameObject.SetActive(false);
 
