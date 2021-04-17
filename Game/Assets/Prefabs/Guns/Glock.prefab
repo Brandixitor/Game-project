@@ -525,7 +525,6 @@ MonoBehaviour:
     Loop: 0
     Volume: 0.1
     Pitch: 1
-    Spatial: 1
   A_Empty:
     clip: {fileID: 8300000, guid: 98b11bbe90f583f4fa212ea10f7b5ce7, type: 3}
     source: {fileID: 0}
@@ -533,7 +532,6 @@ MonoBehaviour:
     Loop: 0
     Volume: 0.4
     Pitch: 1
-    Spatial: 1
   A_Reload:
     clip: {fileID: 0}
     source: {fileID: 0}
@@ -541,7 +539,6 @@ MonoBehaviour:
     Loop: 0
     Volume: 0
     Pitch: 0
-    Spatial: 1
   MuzzleFlash: {fileID: 7262284155531753139}
   ImpactEffect: {fileID: 4410890111030655517, guid: 82b0bff3fae96774594b9aaacb842bd2,
     type: 3}

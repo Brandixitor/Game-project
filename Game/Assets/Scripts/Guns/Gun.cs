@@ -45,8 +45,10 @@ public class Gun : MonoBehaviour {
 
         RaycastHit hit;
         AmmoInMagazine--;
+
         MuzzleFlash.Play();
         AudioManager.instance.PlayClip(A_Shot.Name);
+        Player.instance.UpdateGunUI();
 
         if(Physics.Raycast(Player.instance.Camera.position, Player.instance.Camera.forward, out hit, Range)) {
 
@@ -78,10 +80,12 @@ public class Gun : MonoBehaviour {
     public IEnumerator Reload() {
 
         AmmoInInventory--;
+        Player.instance.UpdateGunUI();
 
         yield return new WaitForSeconds(ReloadTime);
 
         AmmoInMagazine++;
+        Player.instance.UpdateGunUI();
 
         if(AmmoInMagazine < MagazineSize && AmmoInInventory > 0) {
 

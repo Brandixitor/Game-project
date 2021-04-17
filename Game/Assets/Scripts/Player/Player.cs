@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour {
 
@@ -25,20 +27,19 @@ public class Player : MonoBehaviour {
     public Transform GunPlaceholder;
     public Transform Camera;
     public Gun CurrentGun;
+    public TMP_Text Ammo;
 
+    //Health functions
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-    }
 
-    public void EquipGun(Gun gun) {
+        if(CurrentGun == null) {
 
-        GameObject GO = Instantiate(gun.gameObject, GunPlaceholder.position, GunPlaceholder.rotation, GunPlaceholder);
-        Gun _gun = GO.GetComponent<Gun>();
-        
-        CurrentGun = _gun;
+            Ammo.gameObject.SetActive(false);
 
+        }
     }
 
     void TakeDamage(int damage)
@@ -46,6 +47,29 @@ public class Player : MonoBehaviour {
         currentHealth -= damage;
 
         healthBar.SetHealth(currentHealth);
+    }
+
+    //Guns Functions
+    public void EquipGun(Gun gun) {
+
+        if(!Ammo.IsActive()) {
+
+            Ammo.gameObject.SetActive(true);
+
+        }
+
+        GameObject GO = Instantiate(gun.gameObject, GunPlaceholder.position, GunPlaceholder.rotation, GunPlaceholder);
+        Gun _gun = GO.GetComponent<Gun>();
+        
+        CurrentGun = _gun;
+        UpdateGunUI();
+
+    }
+
+    public void UpdateGunUI() {
+
+        Ammo.text = CurrentGun.name + ": " + CurrentGun.AmmoInMagazine + "/" + CurrentGun.AmmoInInventory;
+
     }
 
 }
