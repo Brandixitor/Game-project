@@ -9,9 +9,7 @@ public class Pickup : MonoBehaviour {
         if(other.gameObject.tag == "Player") {
 
             Destroy(gameObject);
-
-            gun.Equip();
-            Player.instance.Guns[gun.Index] = gun;
+            Player.instance.EquipGun(gun);
 
         }
 

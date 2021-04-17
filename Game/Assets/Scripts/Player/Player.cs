@@ -6,17 +6,6 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
 
-    public int maxHealth = 100;
-    public int currentHealth;
-
-    public HealthBarScript healthBar;
-
-    void start()
-    {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-    }
-
     private void Awake() {
 
         if(instance == null) {
@@ -27,51 +16,36 @@ public class Player : MonoBehaviour {
 
     }
 
-    public Transform EquipPlaceholder;
-    public Gun[] Guns;
-    public static Gun CurrentGun;
-    public static GameObject CurrentGunGO;
+    //Health Stuff
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBarScript healthBar;
 
+    //Guns Stuff
+    public Transform GunPlaceholder;
+    public Transform Camera;
+    public Gun CurrentGun;
 
-    private void Update() {
-       
+    void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
 
-        if(CurrentGun != null) {
+    public void EquipGun(Gun gun) {
 
-            int Index = CurrentGun.Index;
-
-            if(Input.GetAxis("Mouse ScrollWheel") > 0 && Index < Guns.Length - 1) {
-
-                Index++;
-                Guns[Index].Equip();
-
-            } else if(Input.GetAxis("Mouse ScrollWheel") < 0) {
-
-                if(Index > 0) {
-
-                    Index--;
-                    Guns[Index].Equip();
-
-                }
-
-            }
-
-        }
+        GameObject GO = Instantiate(gun.gameObject, GunPlaceholder.position, GunPlaceholder.rotation, GunPlaceholder);
+        Gun _gun = GO.GetComponent<Gun>();
+        
+        CurrentGun = _gun;
 
     }
 
-
-
-   void TakeDamage(int damage)
+    void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
         healthBar.SetHealth(currentHealth);
     }
-
-
-
-
-
 
 }

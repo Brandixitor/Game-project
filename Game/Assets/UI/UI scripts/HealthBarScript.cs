@@ -21,8 +21,4 @@ public class HealthBarScript : MonoBehaviour
         slider.value = health;
     }
 
-
-
-
-   
 }
