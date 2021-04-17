@@ -34,11 +34,7 @@ public class Player : MonoBehaviour {
 
 
     private void Update() {
-        //This input is here to make sure the health works
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20);
-        }
+       
 
         if(CurrentGun != null) {
 
