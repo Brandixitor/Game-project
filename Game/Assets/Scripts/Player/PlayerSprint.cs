@@ -6,6 +6,7 @@ public class PlayerSprint : MonoBehaviour
 {
     PlayerMovement basicMovementScript;
     public float speedBoost = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,6 @@ public class PlayerSprint : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
             basicMovementScript.MovementSpeed += speedBoost;
         else if (Input.GetKeyUp(KeyCode.LeftShift))
-        basicMovementScript.MovementSpeed -= speedBoost;
+            basicMovementScript.MovementSpeed -= speedBoost;
     }
 }

@@ -19,27 +19,31 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Update() {
 
-        float x = Input.GetAxisRaw("Horizontal") * MovementSpeed;
-        float y = Input.GetAxisRaw("Vertical") * MovementSpeed;
+        if(Player.instance.CanMove) {
 
-        isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), 0.4f, layerMask);
+            float x = Input.GetAxisRaw("Horizontal") * MovementSpeed;
+            float y = Input.GetAxisRaw("Vertical") * MovementSpeed;
 
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+            isGrounded = Physics.CheckSphere(new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), 0.4f, layerMask);
 
-            rb.velocity = new Vector3(rb.velocity.x, JumpForce, rb.velocity.z);
+            if(Input.GetKeyDown(KeyCode.Space) && isGrounded) {
+
+                rb.velocity = new Vector3(rb.velocity.x, JumpForce, rb.velocity.z);
+
+            }
+
+            if(!isGrounded) {
+
+                rb.velocity -= new Vector3(0, Mass, 0);
+
+            }
+
+            Vector3 movePos = transform.right * x + transform.forward * y;
+            Vector3 newMovePos = new Vector3(movePos.x, rb.velocity.y, movePos.z);
+
+            rb.velocity = newMovePos;
 
         }
-
-        if(!isGrounded) {
-
-            rb.velocity -= new Vector3(0, Mass, 0);
-
-        }
-
-        Vector3 movePos = transform.right * x + transform.forward * y;
-        Vector3 newMovePos = new Vector3(movePos.x, rb.velocity.y, movePos.z);
-
-        rb.velocity = newMovePos;
 
     }
 

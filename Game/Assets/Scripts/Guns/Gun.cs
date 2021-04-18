@@ -33,7 +33,7 @@ public class Gun : MonoBehaviour {
 
         }
 
-        if(Input.GetKeyDown(KeyCode.R)) {
+        if(Input.GetKeyDown(KeyCode.R) &&AmmoInInventory > 0) {
 
             StartCoroutine(Reload());
 
@@ -49,6 +49,8 @@ public class Gun : MonoBehaviour {
         MuzzleFlash.Play();
         AudioManager.instance.PlayClip(A_Shot.Name);
         Player.instance.UpdateGunUI();
+
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
 
         if(Physics.Raycast(Player.instance.Camera.position, Player.instance.Camera.forward, out hit, Range)) {
 
@@ -67,7 +69,7 @@ public class Gun : MonoBehaviour {
             }
 
             GameObject GO = Instantiate(ImpactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(GO, 5);
+            Destroy(GO, 1);
 
         }
 

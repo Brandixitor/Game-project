@@ -29,6 +29,10 @@ public class Player : MonoBehaviour {
     public Gun CurrentGun;
     public TMP_Text Ammo;
 
+    //Movement and Camera stuff
+    public bool CanLook = true;
+    public bool CanMove = true;
+
     //Health functions
     void Start()
     {

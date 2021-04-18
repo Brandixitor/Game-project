@@ -19,22 +19,22 @@ public class PlayerCrouch : MonoBehaviour
     {
         // Crouching script.
         if (Input.GetKeyDown(KeyCode.LeftControl))
-        crouch();
-            else if(Input.GetKeyUp(KeyCode.LeftControl)) 
+            crouch();
+        else if(Input.GetKeyUp(KeyCode.LeftControl)) 
             GoUp();
     }
 
 
-// Script to reduce height.
-void crouch()
-{
-   playerCol.height = reducedHeight; 
-}
+    // Script to reduce height.
+    void crouch()
+    {
+        playerCol.height = reducedHeight; 
+    }
 
-// Script to reset height.
-void GoUp()
-{
-   playerCol.height = originalHeight; 
-}
+    // Script to reset height.
+    void GoUp()
+    {
+        playerCol.height = originalHeight; 
+    }
 
 }
