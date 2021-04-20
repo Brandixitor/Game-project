@@ -18,44 +18,59 @@ public class Player : MonoBehaviour {
 
     }
 
+    //UI Stuff
+    public TMP_Text Health;
+    public TMP_Text Ammo;
+
     //Health Stuff
-    public int maxHealth = 100;
-    public int currentHealth;
-    public HealthBarScript healthBar;
+    public int CurrentHealth;
+    public int MaxHealth = 100;
 
     //Guns Stuff
     public Transform GunPlaceholder;
     public Transform Camera;
     public Gun CurrentGun;
-    public TMP_Text Ammo;
 
     //Movement and Camera stuff
     public bool CanLook = true;
     public bool CanMove = true;
 
     //Health functions
+    public void Damage(int Amount) {
+
+        if(CurrentHealth - Amount > 0) {
+
+            CurrentHealth -= Amount;
+            UpdateHealthUI();
+
+        } else {
+
+            CurrentHealth = 0;
+            UpdateHealthUI();
+            Die();
+
+        }
+
+    }
+
+    public void Die() {
+
+        CanMove = false;
+        CanLook = false;
+
+    }
+
     void Start()
     {
 
-        if(healthBar != null) {
-
-            currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
-
-        }
+        UpdateHealthUI();
 
         if(CurrentGun == null && Ammo != null) {
 
             Ammo.gameObject.SetActive(false);
 
         }
-    }
 
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-
-        healthBar.SetHealth(currentHealth);
     }
 
     //Guns Functions
@@ -72,6 +87,14 @@ public class Player : MonoBehaviour {
         
         CurrentGun = _gun;
         UpdateGunUI();
+
+    }
+
+    //UI Functions
+
+    public void UpdateHealthUI() {
+
+        Health.text = "Health: " + CurrentHealth.ToString() + "/" + MaxHealth.ToString();
 
     }
 

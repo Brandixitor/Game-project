@@ -9,9 +9,20 @@ public class Magazine : MonoBehaviour {
 
         if(other.gameObject.tag == "Player") {
 
-            if(Player.instance.CurrentGun.name == gun.name) {
+            if(Player.instance.CurrentGun != null) {
 
-                Player.instance.CurrentGun.AmmoInInventory += Ammo;
+                if(Player.instance.CurrentGun.name == gun.name) {
+
+                    Player.instance.CurrentGun.AmmoInInventory += Ammo;
+                    Destroy(gameObject);
+
+                    Player.instance.UpdateGunUI();
+
+                }
+
+            } else {
+
+                gun.AmmoInInventory += Ammo;
                 Destroy(gameObject);
 
             }

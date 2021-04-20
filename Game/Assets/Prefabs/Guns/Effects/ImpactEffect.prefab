@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6600030081047301663}
   - component: {fileID: 1122106085513528432}
   m_Layer: 9
-  m_Name: Particle System
+  m_Name: ImpactEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4767,7 +4767,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a6dbf58a2d709c643b45fbc3dcf841c5, type: 2}
+  - {fileID: 2100000, guid: 8db583a89900dbc4db0033e335a53b74, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
