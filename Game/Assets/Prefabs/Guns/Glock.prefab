@@ -508,9 +508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d4933b55843d4b93827ef12298c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Glock
-  MinDamage: 10
-  MaxDamage: 15
+  Name: Glock
+  Damage: 0
   Range: 100
   HitForce: 100
   FireRate: 2.5
@@ -518,6 +517,7 @@ MonoBehaviour:
   AmmoInMagazine: 19
   AmmoInInventory: 0
   MagazineSize: 19
+  isReloading: 0
   A_Shot:
     clip: {fileID: 8300000, guid: 4bf3d38fbdf5d9541aa9812efbe9b427, type: 3}
     source: {fileID: 0}

@@ -18,6 +18,10 @@ public class Player : MonoBehaviour {
 
     }
 
+    //Scripts for better access
+    public PlayerMovement movement;
+    public MouseLook Look;
+
     //UI Stuff
     public TMP_Text Health;
     public TMP_Text Ammo;
@@ -94,13 +98,17 @@ public class Player : MonoBehaviour {
 
     public void UpdateHealthUI() {
 
-        Health.text = "Health: " + CurrentHealth.ToString() + "/" + MaxHealth.ToString();
+        if(Health != null) {
+
+            Health.text = "Health: " + CurrentHealth.ToString() + "/" + MaxHealth.ToString();
+
+        }
 
     }
 
     public void UpdateGunUI() {
 
-        Ammo.text = CurrentGun.name + ": " + CurrentGun.AmmoInMagazine + "/" + CurrentGun.AmmoInInventory;
+        Ammo.text = CurrentGun.Name + ": " + CurrentGun.AmmoInMagazine + "/" + CurrentGun.AmmoInInventory;
 
     }
 

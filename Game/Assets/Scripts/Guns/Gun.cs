@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour {
 
-    public string name;
-    public float MinDamage, MaxDamage, Range = 100, HitForce = 100f, FireRate = 15f, ReloadTime;
+    public string Name;
+    public float Damage, Range = 100, HitForce = 100f, FireRate = 15f, ReloadTime;
     public int AmmoInMagazine, AmmoInInventory, MagazineSize;
     public Sound A_Shot, A_Empty, A_Reload;
     public ParticleSystem MuzzleFlash;
@@ -33,7 +33,7 @@ public class Gun : MonoBehaviour {
 
         }
 
-        if(Input.GetKeyDown(KeyCode.R) &&AmmoInInventory > 0) {
+        if(Input.GetKeyDown(KeyCode.R) && AmmoInInventory > 0) {
 
             StartCoroutine(Reload());
 
@@ -58,7 +58,7 @@ public class Gun : MonoBehaviour {
 
             if(target != null) {
 
-                target.Damage(Random.Range(MinDamage, MaxDamage));
+                target.Damage(Damage);
 
             }
 
@@ -81,19 +81,34 @@ public class Gun : MonoBehaviour {
 
     public IEnumerator Reload() {
 
-        AmmoInInventory--;
-        Player.instance.UpdateGunUI();
+        int AmmoReload = MagazineSize - AmmoInMagazine;
 
-        yield return new WaitForSeconds(ReloadTime);
+        if(AmmoInInventory - AmmoReload > 0) {
 
-        AmmoInMagazine++;
-        Player.instance.UpdateGunUI();
+            Debug.Log(AmmoReload);
 
-        if(AmmoInMagazine < MagazineSize && AmmoInInventory > 0) {
+            AmmoInInventory -= AmmoReload;
+            Player.instance.UpdateGunUI();
 
-            StartCoroutine(Reload());
+            //yield return new WaitForSeconds(ReloadTime);
+
+            AmmoInMagazine += AmmoReload;
+            Player.instance.UpdateGunUI();
+
+        } else {
+
+            int ReloadAmount = AmmoInInventory;
+            AmmoInInventory = 0;
+            Player.instance.UpdateGunUI();
+
+            //yield return new WaitForSeconds(ReloadTime);
+
+            AmmoInMagazine += ReloadAmount;
+            Player.instance.UpdateGunUI();
 
         }
+
+        yield return null;
 
     }
 
